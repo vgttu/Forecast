@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/forecast.iml" filepath="$PROJECT_DIR$/.idea/modules/forecast.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/forecast_main.iml" filepath="$PROJECT_DIR$/.idea/modules/forecast_main.iml" group="forecast" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/forecast_test.iml" filepath="$PROJECT_DIR$/.idea/modules/forecast_test.iml" group="forecast" />
       <module fileurl="file://$PROJECT_DIR$/weather/weather.iml" filepath="$PROJECT_DIR$/weather/weather.iml" />
     </modules>
   </component>
