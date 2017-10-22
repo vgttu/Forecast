@@ -13,12 +13,16 @@ class GeoWeatherRepositoryTest {
     @Test
     void checkGeoWeatherResponse() {
         try {
-            WeatherRequest request = new WeatherRequest("Tallinn", "EE", "metric");
+            WeatherRequest request = new WeatherRequest(35.0, 35.0, "metric");
             GeoWeatherRepository repository = new GeoWeatherRepository();
 
             GeoWeatherReport report = repository.getGeoWeather(request);
 
-            fail("Not implimented");
+            assertEquals(request.getLatitude(), report.getLatitude());
+            assertEquals(request.getLongtitude(), report.getLongtitude());
+            assertNotNull(report.getCurrentTemperature());
+            assertNotNull(report.getMaximumTemperature());
+            assertNotNull(report.getMinimalTemperature());
         } catch (Exception e) {
             fail("Failure cause: " + e.getMessage());
         }

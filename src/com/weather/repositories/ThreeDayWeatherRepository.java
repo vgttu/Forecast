@@ -12,6 +12,13 @@ import java.util.Map;
  */
 public class ThreeDayWeatherRepository extends Repository {
     public ThreeDayWeatherReport getThreeDayWeather(WeatherRequest request) throws Exception {
-        return null;
+        Map<String, String> params = new HashMap<String, String>();
+
+        params.put("q", request.getCity() + "," + request.getCode());
+        params.put("units", request.getUnits());
+
+        String response = this.readUrl("/forecast", params);
+
+        return new ThreeDayWeatherReport(new JSONObject(response));
     }
 }

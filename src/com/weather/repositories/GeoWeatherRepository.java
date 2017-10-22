@@ -12,6 +12,14 @@ import java.util.Map;
  */
 public class GeoWeatherRepository extends Repository {
     public GeoWeatherReport getGeoWeather(WeatherRequest request) throws Exception {
-        return null;
+        Map<String, String> params = new HashMap<String, String>();
+
+        params.put("lat", String.valueOf(request.getLatitude()));
+        params.put("lon", String.valueOf(request.getLongtitude()));
+        params.put("units", request.getUnits());
+
+        String response = this.readUrl("/weather", params);
+
+        return new GeoWeatherReport(new JSONObject(response));
     }
 }

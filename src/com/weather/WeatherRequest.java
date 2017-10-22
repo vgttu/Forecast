@@ -8,6 +8,9 @@ public class WeatherRequest {
     protected String code;
     protected String units = "metric";
 
+    protected Double latitude;
+    protected Double longtitude;
+
     public WeatherRequest(String city, String code) {
         this.city = city;
         this.code = code;
@@ -16,6 +19,12 @@ public class WeatherRequest {
     public WeatherRequest(String city, String code, String units) {
         this.city = city;
         this.code = code;
+        this.units = units;
+    }
+
+    public WeatherRequest(Double latitude, Double longtitude, String units) {
+        this.latitude = latitude;
+        this.longtitude = longtitude;
         this.units = units;
     }
 
@@ -41,5 +50,21 @@ public class WeatherRequest {
 
     public void setUnits(String units) {
         this.units = units;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongtitude() {
+        return longtitude;
+    }
+
+    public void setLongtitude(Double longtitude) {
+        this.longtitude = longtitude;
     }
 }

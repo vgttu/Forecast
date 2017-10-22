@@ -17,7 +17,7 @@ public class CurrentWeatherRepository extends Repository {
         params.put("q", request.getCity() + "," + request.getCode());
         params.put("units", request.getUnits());
 
-        String response = this.readUrl("/find", params);
+        String response = this.readUrl("/weather", params);
 
         return new CurrentWeatherReport(new JSONObject(response));
     }

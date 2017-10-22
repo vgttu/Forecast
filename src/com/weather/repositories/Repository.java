@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Created by Vladimir Gaidushin on 01.10.2017.
  */
-public class Repository {
+abstract public class Repository {
     private String url = "http://api.openweathermap.org/data/2.5";
     private String key = "c70b37d3df5171036d35ce0451424d16";
 
