@@ -1,5 +1,10 @@
 package com.weather;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 /**
  * Created by Vladimir Gaidushin on 01.10.2017.
  */
@@ -66,5 +71,33 @@ public class WeatherRequest {
 
     public void setLongtitude(Double longtitude) {
         this.longtitude = longtitude;
+    }
+
+    public static List<WeatherRequest> requestsFromFile() throws IOException {
+        FileHandler fh = new FileHandler();
+
+        List<String> lines = fh.read("input.txt");
+        List<WeatherRequest> requests = new ArrayList<>();
+
+        lines.forEach(line -> {
+            String[] parts = line.split(",");
+
+            if (parts.length == 2) {
+                requests.add(new WeatherRequest(parts[0], parts[1]));
+            }
+        });
+
+        return requests;
+    }
+
+    public static WeatherRequest requestFromConsole() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter city with country code (Tallinn,EE): ");
+        String input = scanner.nextLine();
+
+        String[] parts = input.split(",");
+
+        return new WeatherRequest(parts[0], parts[1]);
     }
 }

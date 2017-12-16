@@ -1,7 +1,10 @@
+import com.weather.FileHandler;
 import com.weather.WeatherRequest;
 import com.weather.reports.CurrentWeatherReport;
 import com.weather.repositories.CurrentWeatherRepository;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,7 +16,9 @@ class CurrentWeatherRepositoryTest {
     void checkCurrentWeatherResponse() {
         try {
             WeatherRequest request = new WeatherRequest("Tallinn", "EE", "metric");
-            com.weather.repositories.CurrentWeatherRepository repository = new com.weather.repositories.CurrentWeatherRepository();
+
+            CurrentWeatherRepository.mock();
+            CurrentWeatherRepository repository = new CurrentWeatherRepository();
 
             CurrentWeatherReport report = repository.getCurrentWeather(request);
 

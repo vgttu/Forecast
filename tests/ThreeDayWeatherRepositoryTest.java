@@ -13,6 +13,8 @@ class ThreeDayWeatherRepositoryTest {
     void checkThreeDayWeatherResponse() {
         try {
             WeatherRequest request = new WeatherRequest("Tallinn", "EE", "metric");
+
+            ThreeDayWeatherRepository.mock();
             ThreeDayWeatherRepository repository = new ThreeDayWeatherRepository();
 
             ThreeDayWeatherReport report = repository.getThreeDayWeather(request);

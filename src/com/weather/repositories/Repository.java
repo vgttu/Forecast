@@ -1,5 +1,7 @@
 package com.weather.repositories;
 
+import com.weather.WeatherRequest;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -12,6 +14,8 @@ import java.util.Map;
 abstract public class Repository {
     private String url = "http://api.openweathermap.org/data/2.5";
     private String key = "c70b37d3df5171036d35ce0451424d16";
+
+    protected static boolean mock = false;
 
     protected String getUrl(String resource, Map<String, String> params) {
         params.put("id", "524901");
@@ -56,4 +60,14 @@ abstract public class Repository {
                 reader.close();
         }
     }
+
+    public boolean isMock() {
+        return mock;
+    }
+
+    public static void mock() {
+        mock = true;
+    }
+
+    public abstract String getMockString(WeatherRequest request);
 }

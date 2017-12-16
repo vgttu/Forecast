@@ -13,7 +13,9 @@ class GeoWeatherRepositoryTest {
     @Test
     void checkGeoWeatherResponse() {
         try {
-            WeatherRequest request = new WeatherRequest(35.0, 35.0, "metric");
+            WeatherRequest request = new WeatherRequest(50.0, 100.0, "metric");
+
+            GeoWeatherRepository.mock();
             GeoWeatherRepository repository = new GeoWeatherRepository();
 
             GeoWeatherReport report = repository.getGeoWeather(request);
