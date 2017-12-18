@@ -1,0 +1,7 @@
+Linna nimi: London
+Linna koordinaadid: 51.5085,-0.1258
+Ilm 3 päeva kohta:
+	 * 20.12.2017: Min = 2.52, Max = 2.52
+	 * 18.12.2017: Min = -3.27, Max = 7.89
+	 * 19.12.2017: Min = -3.85, Max = 5.3
+Hetke ilma temperaturr: 7.89

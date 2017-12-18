@@ -14,14 +14,15 @@ class FileHandlerTest {
     void testReadAndWrite() {
         FileHandler fh = new FileHandler();
 
-        try {
-            String name = "test.txt";
+        String name = "test.txt";
+        String text = "Test writing";
 
-            fh.write(new ArrayList<>(Arrays.asList("Test writing")), name);
+        try {
+            fh.write(new ArrayList<>(Arrays.asList(text)), name);
 
             List<String> lines = fh.read(name);
 
-            assertEquals("Test writing", lines.get(0));
+            assertEquals(text, lines.get(0));
 
             fh.delete(name);
         } catch (IOException e) {
@@ -31,16 +32,20 @@ class FileHandlerTest {
 
     @Test
     void testReadAndWriteWithMock() {
-        FileHandler fh = new FileHandler();
-
-        FileHandler.mock();
+        FileHandler fh = FileHandler.mock();
 
         try {
-            List<String> lines = fh.read("input.txt");
+            List<String> linesWrite = new ArrayList<>();
 
-            assertEquals("Tallinn,EE", lines.get(0));
-            assertEquals("London,GB", lines.get(1));
-            assertTrue(fh.write(lines, "input.txt"));
+            linesWrite.add("Tallinn,EE");
+            linesWrite.add("London,GB");
+
+            assertTrue(fh.write(linesWrite, "input.txt"));
+
+            List<String> linesRead = fh.read("input.txt");
+
+            assertEquals(linesWrite.get(0), linesRead.get(0));
+            assertEquals(linesWrite.get(1), linesRead.get(1));
             assertTrue(fh.delete("input.txt"));
         } catch (IOException e) {
             e.printStackTrace();

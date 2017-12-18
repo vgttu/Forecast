@@ -12,7 +12,15 @@ import java.util.List;
  * Created by Vladimir Gaidushin on 10.12.2017.
  */
 public class FileHandler {
-    protected static boolean mock = false;
+    protected boolean mock = false;
+    protected List<String> mockStrings = new ArrayList<>();
+
+    public FileHandler() {
+    }
+
+    public FileHandler(boolean mock) {
+        this.mock = mock;
+    }
 
     public List<String> read(String file) throws IOException {
         List<String> lines = new ArrayList<>();
@@ -22,9 +30,7 @@ public class FileHandler {
 
             lines = Files.readAllLines(path);
         } else {
-            lines.add("Tallinn,EE");
-            lines.add("London,GB");
-            lines.add("");
+            lines = this.mockStrings;
         }
 
         return lines;
@@ -35,6 +41,8 @@ public class FileHandler {
             Path path = Paths.get(file);
 
             Files.write(path, lines, StandardCharsets.UTF_8);
+        } else {
+            this.mockStrings = lines;
         }
 
         return true;
@@ -54,7 +62,7 @@ public class FileHandler {
         return mock;
     }
 
-    public static void mock() {
-        mock = true;
+    public static FileHandler mock() {
+        return new FileHandler(true);
     }
 }

@@ -1,0 +1,7 @@
+Linna nimi: Tallinn
+Linna koordinaadid: 59.437,24.7535
+Ilm 3 päeva kohta:
+	 * 20.12.2017: Min = -1.91, Max = -1.91
+	 * 18.12.2017: Min = 0.93, Max = 2.23
+	 * 19.12.2017: Min = -2.24, Max = 2.75
+Hetke ilma temperaturr: 1.82
