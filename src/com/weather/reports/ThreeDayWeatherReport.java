@@ -29,15 +29,15 @@ public class ThreeDayWeatherReport extends Report {
         for (int i = 0; i < list.length(); i++) {
             JSONObject item = list.getJSONObject(i);
 
-            if (temperatures.size() >= 3) {
-                break;
-            }
-
             Date date = new Date((long) item.getInt("dt") * 1000);
             LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
             String key = localDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
             Map<String, Double> weather = temperatures.getOrDefault(key, null);
+
+            if (temperatures.size() > 4) {
+                break;
+            }
 
             if (weather == null) {
                 weather = new HashMap<String, Double>();
@@ -55,8 +55,20 @@ public class ThreeDayWeatherReport extends Report {
             }
 
             temperatures.put(key, weather);
+
+            if (temperatures.size() >= 5) {
+                temperatures.remove(key);
+            }
         }
 
+        // Remove first day
+        Date firstDate = new Date((long) list.getJSONObject(0).getInt("dt") * 1000);
+        LocalDate firstLocalDate = firstDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        String firtDateKey = firstLocalDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+
+        temperatures.remove(firtDateKey);
+
+        // Set values
         this.temperatures = temperatures;
 
         this.currentTemperature = json.getJSONArray("list").getJSONObject(0).getJSONObject("main").getDouble("temp");

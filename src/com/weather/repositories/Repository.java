@@ -15,7 +15,7 @@ abstract public class Repository {
     private String url = "http://api.openweathermap.org/data/2.5";
     private String key = "c70b37d3df5171036d35ce0451424d16";
 
-    protected static boolean mock = false;
+    protected boolean mock = false;
 
     protected String getUrl(String resource, Map<String, String> params) {
         params.put("id", "524901");
@@ -63,10 +63,6 @@ abstract public class Repository {
 
     public boolean isMock() {
         return mock;
-    }
-
-    public static void mock() {
-        mock = true;
     }
 
     public abstract String getMockString(WeatherRequest request);

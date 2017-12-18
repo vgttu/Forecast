@@ -46,7 +46,6 @@ class FileHandlerTest {
 
             assertEquals(linesWrite.get(0), linesRead.get(0));
             assertEquals(linesWrite.get(1), linesRead.get(1));
-            assertTrue(fh.delete("input.txt"));
         } catch (IOException e) {
             e.printStackTrace();
         }

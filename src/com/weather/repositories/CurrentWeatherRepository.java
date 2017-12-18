@@ -11,6 +11,13 @@ import java.util.Map;
  * Created by Vladimir Gaidushin on 01.10.2017.
  */
 public class CurrentWeatherRepository extends Repository {
+    public CurrentWeatherRepository() {
+    }
+
+    public CurrentWeatherRepository(boolean mock) {
+        this.mock = mock;
+    }
+
     public CurrentWeatherReport getCurrentWeather(WeatherRequest request) throws Exception {
         Map<String, String> params = new HashMap<String, String>();
 
@@ -20,6 +27,10 @@ public class CurrentWeatherRepository extends Repository {
         String response = ! this.isMock() ? this.readUrl("/weather", params) : this.getMockString(request);
 
         return new CurrentWeatherReport(new JSONObject(response));
+    }
+
+    public static CurrentWeatherRepository mock() {
+        return new CurrentWeatherRepository(true);
     }
 
     @Override

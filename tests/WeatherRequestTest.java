@@ -24,8 +24,7 @@ class WeatherRequestTest {
             requests.forEach(request -> {
                 request.setUnits("metric");
 
-                ThreeDayWeatherRepository.mock();
-                ThreeDayWeatherRepository threeDayWeatherRepository = new ThreeDayWeatherRepository();
+                ThreeDayWeatherRepository threeDayWeatherRepository = ThreeDayWeatherRepository.mock();
 
                 try {
                     ThreeDayWeatherReport report = threeDayWeatherRepository.getThreeDayWeather(request);

@@ -14,9 +14,23 @@ class ThreeDayWeatherRepositoryTest {
         try {
             WeatherRequest request = new WeatherRequest("Tallinn", "EE", "metric");
 
-            ThreeDayWeatherRepository.mock();
             ThreeDayWeatherRepository repository = new ThreeDayWeatherRepository();
+            ThreeDayWeatherReport report = repository.getThreeDayWeather(request);
 
+            assertEquals(request.getCity(), report.getCity());
+            assertEquals(request.getCode(), report.getCode());
+            assertTrue(report.getTemperatures().size() == 3);
+        } catch (Exception e) {
+            fail("Failure cause: " + e.getMessage());
+        }
+    }
+
+    @Test
+    void checkThreeDayWeatherResponseMock() {
+        try {
+            WeatherRequest request = new WeatherRequest("Tallinn", "EE", "metric");
+
+            ThreeDayWeatherRepository repository = ThreeDayWeatherRepository.mock();
             ThreeDayWeatherReport report = repository.getThreeDayWeather(request);
 
             assertEquals(request.getCity(), report.getCity());

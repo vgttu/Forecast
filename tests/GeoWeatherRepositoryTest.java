@@ -15,9 +15,25 @@ class GeoWeatherRepositoryTest {
         try {
             WeatherRequest request = new WeatherRequest(50.0, 100.0, "metric");
 
-            GeoWeatherRepository.mock();
             GeoWeatherRepository repository = new GeoWeatherRepository();
+            GeoWeatherReport report = repository.getGeoWeather(request);
 
+            assertEquals(request.getLatitude(), report.getLatitude());
+            assertEquals(request.getLongtitude(), report.getLongtitude());
+            assertNotNull(report.getCurrentTemperature());
+            assertNotNull(report.getMaximumTemperature());
+            assertNotNull(report.getMinimalTemperature());
+        } catch (Exception e) {
+            fail("Failure cause: " + e.getMessage());
+        }
+    }
+
+    @Test
+    void checkGeoWeatherResponseMock() {
+        try {
+            WeatherRequest request = new WeatherRequest(50.0, 100.0, "metric");
+
+            GeoWeatherRepository repository = GeoWeatherRepository.mock();
             GeoWeatherReport report = repository.getGeoWeather(request);
 
             assertEquals(request.getLatitude(), report.getLatitude());
